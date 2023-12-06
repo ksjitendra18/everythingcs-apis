@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1701841646211,
+      "tag": "0000_cool_colleen_wing",
+      "breakpoints": true
+    }
+  ]
+}
