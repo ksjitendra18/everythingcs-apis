@@ -5,7 +5,7 @@ import { token } from "../../db/schema/token";
 import { and, eq } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
-const getEventInfo = async (c: Context) => {
+const getAllEvents = async (c: Context) => {
   const { q, cc, today, date } = c.req.query();
 
   const db = drizzle(c.env.DB);
@@ -33,9 +33,7 @@ const getEventInfo = async (c: Context) => {
       );
     }
 
-    const { results } = await c.env.DB.prepare(
-      "SELECT DATE(timestamp) AS date, COUNT(DISTINCT ip) AS visitor_count FROM event WHERE referrer like '%google%' GROUP BY date ORDER BY date;"
-    ).all();
+    const result = await db.select().from(event);
 
     return c.json({
       length: results.length,
@@ -52,4 +50,4 @@ const getEventInfo = async (c: Context) => {
   }
 };
 
-export default getEventInfo;
+export default getAllEvents;

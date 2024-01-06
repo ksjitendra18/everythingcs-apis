@@ -2,7 +2,6 @@ import { Context } from "hono";
 import { query } from "../../db/schema/query";
 import { drizzle } from "drizzle-orm/d1";
 
-const SECRET_KEY = "0x4AAAAAAAHq81vCSE7YC5uHKE9mq8rMFTM";
 import { customAlphabet } from "nanoid";
 
 const nanoid = customAlphabet(
@@ -10,6 +9,7 @@ const nanoid = customAlphabet(
   12
 );
 const createContact = async (c: Context) => {
+  const SECRET_KEY = c.env.TURNSTILE_SECRET;
   const { name, email, type, blogPostLink, message, cfTurnstileRes } =
     await c.req.json();
 
