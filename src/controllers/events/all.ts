@@ -33,7 +33,7 @@ const getAllEvents = async (c: Context) => {
       );
     }
 
-    const result = await db.select().from(event);
+    const results = await db.select().from(event);
 
     return c.json({
       length: results.length,

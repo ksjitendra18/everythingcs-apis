@@ -2,11 +2,12 @@ import { Context } from "hono";
 import { query } from "../../db/schema/query";
 import { drizzle } from "drizzle-orm/d1";
 
-const SECRET_KEY = "0x4AAAAAAAHq81vCSE7YC5uHKE9mq8rMFTM";
 import { customAlphabet } from "nanoid";
 import { feedback } from "../../db/schema/feedback";
 
 const createFeedback = async (c: Context) => {
+  const SECRET_KEY = c.env.TURNSTILE_SECRET;
+
   const { message, rating, cfTurnstileRes } = await c.req.json();
 
   const db = drizzle(c.env.DB);

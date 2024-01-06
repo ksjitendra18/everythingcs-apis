@@ -34,7 +34,7 @@ const getTodayEvent = async (c: Context) => {
     }
 
     const { results } = await c.env.DB.prepare(
-      "SELECT * FROM event WHERE referrer like '%google%' AND DATE(timestamp) = CURDATE();"
+      "SELECT * FROM event WHERE referrer like '%google%' AND DATE(timestamp) = CURRENT_DATE;"
     ).all();
 
     return c.json({
