@@ -8,7 +8,7 @@ import { feedback } from "../../db/schema/feedback";
 const createFeedback = async (c: Context) => {
   const SECRET_KEY = c.env.TURNSTILE_SECRET;
 
-  const { message, rating, cfTurnstileRes } = await c.req.json();
+  const { message, rating, cfTurnstileRes, slug } = await c.req.json();
 
   const db = drizzle(c.env.DB);
   const ip = c.req.header("CF-Connecting-IP");

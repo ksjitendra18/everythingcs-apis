@@ -9,11 +9,10 @@ const nanoid = customAlphabet(
 );
 
 export const feedback = sqliteTable("feedback", {
-  id: text("id")
-    .$default(() => nanoid())
-    .primaryKey(),
+  id: integer("id").primaryKey(),
   rating: integer("rating").notNull(),
   message: text("message"),
+  slug: text("slug").notNull(),
   isResolved: integer("is_resolved", { mode: "boolean" })
     .notNull()
     .default(false),

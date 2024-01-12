@@ -11,7 +11,7 @@ CREATE TABLE `event` (
 );
 --> statement-breakpoint
 CREATE TABLE `feedback` (
-	`id` text PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY NOT NULL,
 	`rating` integer NOT NULL,
 	`message` text,
 	`is_resolved` integer DEFAULT false NOT NULL,

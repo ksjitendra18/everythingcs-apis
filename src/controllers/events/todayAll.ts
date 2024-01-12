@@ -5,10 +5,8 @@ import { token } from "../../db/schema/token";
 import { and, eq } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
-const getTodayEvent = async (c: Context) => {
-  let { event } = c.req.query();
-
-  event = event ?? "scroll";
+const getAllTodayEvent = async (c: Context) => {
+  const { q, cc, today, date } = c.req.query();
 
   const db = drizzle(c.env.DB);
 
@@ -36,10 +34,8 @@ const getTodayEvent = async (c: Context) => {
     }
 
     const { results } = await c.env.DB.prepare(
-      "SELECT * FROM event WHERE referrer like '%google%' AND type = ? AND DATE(timestamp) = CURRENT_DATE;"
-    )
-      .bind(event)
-      .all();
+      "SELECT * FROM event WHERE referrer like '%google%' AND DATE(timestamp) = CURRENT_DATE;"
+    ).all();
 
     return c.json({
       length: results.length,
@@ -56,4 +52,4 @@ const getTodayEvent = async (c: Context) => {
   }
 };
 
-export default getTodayEvent;
+export default getAllTodayEvent;
