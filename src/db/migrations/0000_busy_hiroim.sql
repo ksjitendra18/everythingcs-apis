@@ -14,6 +14,7 @@ CREATE TABLE `feedback` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`rating` integer NOT NULL,
 	`message` text,
+	`slug` text NOT NULL,
 	`is_resolved` integer DEFAULT false NOT NULL,
 	`ip` text NOT NULL,
 	`timestamp` text DEFAULT CURRENT_TIMESTAMP NOT NULL
