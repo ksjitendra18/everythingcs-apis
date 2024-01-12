@@ -63,6 +63,7 @@ const createFeedback = async (c: Context) => {
     const newFeedback = await db.insert(feedback).values({
       message,
       rating,
+      slug,
       ip: ip ?? "dev",
     });
 
